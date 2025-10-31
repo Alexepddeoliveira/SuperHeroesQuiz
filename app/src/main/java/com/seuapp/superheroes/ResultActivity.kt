@@ -72,10 +72,10 @@ class ResultActivity : AppCompatActivity() {
         btnRefazer?.setOnClickListener {
             val restart = Intent(this, QuizActivity::class.java).apply {
                 putExtra("NOME_USUARIO", nome)
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                // Cria uma NOVA tarefa e limpa a pilha anterior: garante step=0
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             }
             startActivity(restart)
-            finish() // fecha a ResultActivity atual
         }
     }
 }

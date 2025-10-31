@@ -10,113 +10,170 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Q1: Virtude central (mapeia para Homem de Ferro, Hulk, Capitão América, Thor) -->
+        <!-- Indicador de progresso -->
         <TextView
-            android:text="@string/q1_title"
+            android:id="@+id/tvStep"
+            android:text="@string/step_label"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <RadioGroup
-            android:id="@+id/rgTraco"
-            android:layout_marginTop="8dp"
+        <!-- ============ Q1 ============ -->
+        <LinearLayout
+            android:id="@+id/groupQ1"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RadioButton
-                android:id="@+id/rbInteligencia"
-                android:text="@string/rb_inteligencia"
+            <TextView
+                android:text="@string/q1_title"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <RadioButton
-                android:id="@+id/rbForca"
-                android:text="@string/rb_forca"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <RadioGroup
+                android:id="@+id/rgTraco"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <RadioButton
-                android:id="@+id/rbCoragem"
-                android:text="@string/rb_coragem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <RadioButton
+                    android:id="@+id/rbInteligencia"
+                    android:text="@string/rb_inteligencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            <RadioButton
-                android:id="@+id/rbAgilidade"
-                android:text="@string/rb_agilidade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/rbForca"
+                    android:text="@string/rb_forca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-        <!-- Q2: Valores (marque quantos quiser) -->
-        <TextView
-            android:text="@string/q2_title"
-            android:textStyle="bold"
+                <RadioButton
+                    android:id="@+id/rbCoragem"
+                    android:text="@string/rb_coragem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rbAgilidade"
+                    android:text="@string/rb_agilidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <!-- ============ Q2 ============ -->
+        <LinearLayout
+            android:id="@+id/groupQ2"
+            android:orientation="vertical"
             android:layout_marginTop="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <CheckBox
-            android:id="@+id/cbLideranca"
-            android:text="@string/cb_lideranca"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <CheckBox
-            android:id="@+id/cbCompPaixao"
-            android:text="@string/cb_compaixao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <CheckBox
-            android:id="@+id/cbEstrategia"
-            android:text="@string/cb_estrategia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <CheckBox
-            android:id="@+id/cbHumor"
-            android:text="@string/cb_humor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Q3: Autocontrole (0..10) -->
-        <TextView
-            android:id="@+id/tvCoragemLabel"
-            android:text="@string/q3_label"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <SeekBar
-            android:id="@+id/skCoragem"
-            android:max="10"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvCoragemValor"
-            android:text="@string/coragem_valor_zero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:text="@string/q2_title"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <!-- Q4: Arma/Poder (Spinner ligado ao novo poderes_array) -->
-        <TextView
-            android:text="@string/q4_title"
-            android:textStyle="bold"
+            <CheckBox
+                android:id="@+id/cbLideranca"
+                android:text="@string/cb_lideranca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <CheckBox
+                android:id="@+id/cbCompPaixao"
+                android:text="@string/cb_compaixao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <CheckBox
+                android:id="@+id/cbEstrategia"
+                android:text="@string/cb_estrategia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <CheckBox
+                android:id="@+id/cbHumor"
+                android:text="@string/cb_humor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- ============ Q3 ============ -->
+        <LinearLayout
+            android:id="@+id/groupQ3"
+            android:orientation="vertical"
             android:layout_marginTop="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Spinner
-            android:id="@+id/spPoder"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnVerResultado"
-            android:text="@string/btn_ver_resultado"
+            <TextView
+                android:id="@+id/tvCoragemLabel"
+                android:text="@string/q3_label"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <SeekBar
+                android:id="@+id/skCoragem"
+                android:max="10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvCoragemValor"
+                android:text="@string/coragem_valor_zero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- ============ Q4 ============ -->
+        <LinearLayout
+            android:id="@+id/groupQ4"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/q4_title"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/spPoder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Navegação -->
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_marginTop="24dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnBack"
+                android:text="@string/btn_back"
+                android:enabled="false"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btnNext"
+                android:text="@string/btn_next"
+                android:layout_marginStart="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

@@ -39,6 +39,11 @@
     <!-- Q4: Arma/Poder -->
     <string name="q4_title">4) Qual arma/poder você escolheria?</string>
 
+    <string name="btn_next">Próximo</string>
+    <string name="btn_back">Voltar</string>
+    <string name="step_label">Pergunta %1$d de 4</string>
+    <string name="error_q1">Escolha uma opção na pergunta 1.</string>
+    <string name="error_q4">Selecione uma opção na pergunta 4.</string>
 
     <!-- Mensagem de resultado -->
     <string name="result_message">%1$s, você é mais parecido com %2$s! (score %3$d)</string>
