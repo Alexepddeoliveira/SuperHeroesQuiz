@@ -68,7 +68,7 @@ class ResultActivity : AppCompatActivity() {
             }
         }
 
-        // Refazer quiz (volta para o QuizActivity e mantém o nome)
+        // Refazer quiz
         btnRefazer?.setOnClickListener {
             val restart = Intent(this, QuizActivity::class.java).apply {
                 putExtra("NOME_USUARIO", nome)

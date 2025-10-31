@@ -26,7 +26,7 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var tvCoragemValor: TextView
     private lateinit var spPoder: Spinner
 
-    private var step = 0 // 0..3
+    private var step = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,7 +89,7 @@ class QuizActivity : AppCompatActivity() {
                 step++
                 updateStepUI()
             } else {
-                // Último passo: calcular resultado e ir para a ResultActivity
+                // calcular resultados e ir para a tela de resultado
                 computeAndGo()
             }
         }
@@ -107,7 +107,7 @@ class QuizActivity : AppCompatActivity() {
         // Atualizar indicador de passo
         tvStep.text = getString(R.string.step_label, step + 1)
 
-        // Botões
+        // Bt
         btnBack.isEnabled = step > 0
         btnNext.text = if (step == 3) getString(R.string.btn_ver_resultado) else getString(R.string.btn_next)
     }
@@ -180,13 +180,11 @@ class QuizActivity : AppCompatActivity() {
 
         val (heroi, pontuacao) = scores.maxByOrNull { it.value }!!
 
-        // Extras para a explicação (se você já implementou)
         val i = Intent(this, ResultActivity::class.java).apply {
             putExtra("NOME_USUARIO", nome)
             putExtra("HEROI", heroi)
             putExtra("PONTUACAO", pontuacao)
 
-            // Para a explicação (opcional):
             val traitIdx = when (rgTraco.checkedRadioButtonId) {
                 R.id.rbInteligencia -> 0
                 R.id.rbForca        -> 1

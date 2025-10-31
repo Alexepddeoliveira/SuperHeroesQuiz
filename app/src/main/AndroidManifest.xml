@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.seuapp.superheroes">
 
-    <!-- Package visibility (Android 11+): VIEW http/https e SEND text/plain -->
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
