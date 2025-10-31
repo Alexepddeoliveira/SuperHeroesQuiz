@@ -1,0 +1,8 @@
+<resources>
+    <string-array name="poderes_array">
+        <item>Armadura tecnológica</item>
+        <item>Super força</item>
+        <item>Laço da verdade</item>
+        <item>Sentido aranha</item>
+    </string-array>
+</resources>

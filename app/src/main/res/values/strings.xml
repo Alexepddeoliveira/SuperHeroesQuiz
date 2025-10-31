@@ -1,0 +1,39 @@
+<resources>
+    <!-- App -->
+    <string name="app_name">SuperHeroesQuiz</string>
+    <string name="app_title">Qual super-herói é você?</string>
+    <string name="app_subtitle">Responda o quiz e descubra</string>
+    <string name="hint_nome">Seu nome</string>
+    <string name="btn_comecar">Começar</string>
+
+    <!-- Result / botões -->
+    <string name="result_title">Seu herói:</string>
+    <string name="btn_compartilhar">Compartilhar</string>
+    <string name="btn_abrir_wiki">Ver no Wikipedia</string>
+    <string name="btn_ver_resultado">Ver resultado</string>
+    <string name="share_chooser_title">Compartilhar via</string>
+    <string name="share_text">Meu resultado no %1$s: eu sou %2$s! 💥</string>
+    <string name="toast_no_app">Nenhum app disponível para abrir links.</string>
+
+    <!-- Quiz -->
+    <string name="q1_title">1) Qual traço mais te define?</string>
+    <string name="rb_inteligencia">Inteligência e tecnologia (Homem de Ferro)</string>
+    <string name="rb_forca">Força bruta e determinação (Hulk)</string>
+    <string name="rb_coragem">Coragem e senso de justiça (Mulher-Maravilha)</string>
+    <string name="rb_agilidade">Agilidade e responsabilidade (Homem-Aranha)</string>
+
+    <string name="q2_title">2) O que você valoriza em um herói? (marque quantos quiser)</string>
+    <string name="cb_lideranca">Liderança</string>
+    <string name="cb_compaixao">Compaixão</string>
+    <string name="cb_estrategia">Estratégia</string>
+    <string name="cb_humor">Bom humor</string>
+
+    <string name="q3_label">3) Nível de coragem:</string>
+    <string name="coragem_valor_zero">0/10</string>
+    <string name="coragem_valor">%1$d/10</string>
+
+    <string name="q4_title">4) Qual poder te atrai mais?</string>
+
+    <!-- Mensagem de resultado -->
+    <string name="result_message">%1$s, você é mais parecido com %2$s! (score %3$d)</string>
+</resources>
