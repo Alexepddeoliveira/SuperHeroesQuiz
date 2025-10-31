@@ -33,6 +33,7 @@ class QuizActivity : AppCompatActivity() {
         spPoder = findViewById(R.id.spPoder)
         btnVerResultado = findViewById(R.id.btnVerResultado)
 
+        // Spinner: carrega opções e define seleção inicial
         ArrayAdapter.createFromResource(
             this,
             R.array.poderes_array,
@@ -41,8 +42,13 @@ class QuizActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spPoder.adapter = adapter
         }
+        if (spPoder.adapter != null && spPoder.adapter.count > 0) {
+            spPoder.setSelection(0, false) // evita null ao ler depois
+        }
 
-        skCoragem.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+        // SeekBar: texto inicial e listener
+        tvCoragemValor.text = getString(R.string.coragem_valor, skCoragem.progress)
+        skCoragem.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 tvCoragemValor.text = getString(R.string.coragem_valor, progress)
             }
@@ -53,37 +59,64 @@ class QuizActivity : AppCompatActivity() {
         btnVerResultado.setOnClickListener {
             val nome = intent.getStringExtra("NOME_USUARIO") ?: getString(R.string.app_name)
 
+            // Valida: precisa escolher ao menos um traço (Q1)
+            if (rgTraco.checkedRadioButtonId == -1) {
+                Toast.makeText(this, "Escolha um traço na pergunta 1.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Valida: spinner com itens
+            if (spPoder.adapter == null || spPoder.adapter.count == 0) {
+                Toast.makeText(this, "Lista de poderes indisponível.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val scores = mutableMapOf(
+                "Thor" to 0,
                 "Homem de Ferro" to 0,
-                "Hulk" to 0,
-                "Mulher-Maravilha" to 0,
-                "Homem-Aranha" to 0
+                "Capitão América" to 0,
+                "Hulk" to 0
             )
 
+            // Q1: traço principal
             when (rgTraco.checkedRadioButtonId) {
                 R.id.rbInteligencia -> scores["Homem de Ferro"] = scores["Homem de Ferro"]!! + 2
-                R.id.rbForca -> scores["Hulk"] = scores["Hulk"]!! + 2
-                R.id.rbCoragem -> scores["Mulher-Maravilha"] = scores["Mulher-Maravilha"]!! + 2
-                R.id.rbAgilidade -> scores["Homem-Aranha"] = scores["Homem-Aranha"]!! + 2
+                R.id.rbForca        -> scores["Hulk"] = scores["Hulk"]!! + 2
+                R.id.rbCoragem      -> scores["Capitão América"] = scores["Capitão América"]!! + 2
+                R.id.rbAgilidade    -> scores["Thor"] = scores["Thor"]!! + 2
             }
 
-            if (cbLideranca.isChecked) scores["Homem de Ferro"] = scores["Homem de Ferro"]!! + 1
-            if (cbCompPaixao.isChecked) scores["Mulher-Maravilha"] = scores["Mulher-Maravilha"]!! + 1
-            if (cbEstrategia.isChecked) scores["Homem de Ferro"] = scores["Homem de Ferro"]!! + 1
-            if (cbHumor.isChecked) scores["Homem-Aranha"] = scores["Homem-Aranha"]!! + 1
 
-            val coragem = skCoragem.progress
-            if (coragem >= 7) {
-                scores["Mulher-Maravilha"] = scores["Mulher-Maravilha"]!! + 2
-            } else if (coragem >= 4) {
-                scores["Homem-Aranha"] = scores["Homem-Aranha"]!! + 1
+            // Q2: valores
+            if (cbLideranca.isChecked)   scores["Capitão América"] = scores["Capitão América"]!! + 1
+            if (cbCompPaixao.isChecked)  scores["Capitão América"] = scores["Capitão América"]!! + 1
+            if (cbEstrategia.isChecked)  scores["Homem de Ferro"]  = scores["Homem de Ferro"]!! + 1
+            if (cbHumor.isChecked)       scores["Thor"]            = scores["Thor"]!! + 1
+
+            // Q3: autocontrole
+            val autocontrole = skCoragem.progress
+            when {
+                autocontrole >= 7 -> {
+                    // muito autocontrole → Cap ou Tony
+                    scores["Capitão América"] = scores["Capitão América"]!! + 2
+                    scores["Homem de Ferro"]  = scores["Homem de Ferro"]!! + 1
+                }
+                autocontrole in 4..6 -> {
+                    // médio → Thor (poder contido, mas às vezes impulsivo)
+                    scores["Thor"] = scores["Thor"]!! + 1
+                }
+                else -> {
+                    // baixo autocontrole → tendência Hulk
+                    scores["Hulk"] = scores["Hulk"]!! + 2
+                }
             }
 
-            when (spPoder.selectedItemPosition) {
-                0 -> scores["Homem de Ferro"] = scores["Homem de Ferro"]!! + 2
-                1 -> scores["Hulk"] = scores["Hulk"]!! + 2
-                2 -> scores["Mulher-Maravilha"] = scores["Mulher-Maravilha"]!! + 2
-                3 -> scores["Homem-Aranha"] = scores["Homem-Aranha"]!! + 2
+            // Q4: poder preferido (defensivo quanto ao índice)
+            when (spPoder.selectedItemPosition.coerceIn(0, spPoder.adapter.count - 1)) {
+                0 -> scores["Thor"]            = scores["Thor"]!! + 2            // Mjölnir
+                1 -> scores["Homem de Ferro"]  = scores["Homem de Ferro"]!! + 2  // Armadura
+                2 -> scores["Capitão América"] = scores["Capitão América"]!! + 2 // Escudo
+                3 -> scores["Hulk"]            = scores["Hulk"]!! + 2            // Força
             }
 
             val (heroi, pontuacao) = scores.maxByOrNull { it.value }!!

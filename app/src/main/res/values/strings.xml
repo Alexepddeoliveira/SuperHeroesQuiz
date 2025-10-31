@@ -12,27 +12,33 @@
     <string name="btn_abrir_wiki">Ver no Wikipedia</string>
     <string name="btn_ver_resultado">Ver resultado</string>
     <string name="share_chooser_title">Compartilhar via</string>
-    <string name="share_text">Meu resultado no %1$s: eu sou %2$s! 💥</string>
+    <string name="share_text">Meu resultado no %1$s: eu sou %2$s!</string>
     <string name="toast_no_app">Nenhum app disponível para abrir links.</string>
+    <string name="btn_refazer_quiz">Refazer quiz</string>
 
     <!-- Quiz -->
-    <string name="q1_title">1) Qual traço mais te define?</string>
-    <string name="rb_inteligencia">Inteligência e tecnologia (Homem de Ferro)</string>
-    <string name="rb_forca">Força bruta e determinação (Hulk)</string>
-    <string name="rb_coragem">Coragem e senso de justiça (Mulher-Maravilha)</string>
-    <string name="rb_agilidade">Agilidade e responsabilidade (Homem-Aranha)</string>
+    <!-- Q1: Virtude central -->
+    <string name="q1_title">1) Qual virtude central mais combina com você?</string>
+    <string name="rb_inteligencia">Gênio inventor e visão tecnológica</string>
+    <string name="rb_forca">Força bruta e resiliência</string>
+    <string name="rb_coragem">Honra, coragem e senso de justiça</string>
+    <string name="rb_agilidade">Nobreza, bravura e domínio de poderes</string>
 
-    <string name="q2_title">2) O que você valoriza em um herói? (marque quantos quiser)</string>
-    <string name="cb_lideranca">Liderança</string>
-    <string name="cb_compaixao">Compaixão</string>
-    <string name="cb_estrategia">Estratégia</string>
-    <string name="cb_humor">Bom humor</string>
+    <!-- Q2: Valores -->
+    <string name="q2_title">2) O que você mais valoriza em um herói? (marque quantos quiser)</string>
+    <string name="cb_lideranca">Liderança e senso de propósito</string>
+    <string name="cb_compaixao">Empatia e servir ao próximo</string>
+    <string name="cb_estrategia">Estratégia e pensamento sistêmico</string>
+    <string name="cb_humor">Humildade e leveza diante do perigo</string>
 
-    <string name="q3_label">3) Nível de coragem:</string>
+    <!-- Q3: Autocontrole -->
+    <string name="q3_label">3) Seu nível de autocontrole em situações de estresse:</string>
     <string name="coragem_valor_zero">0/10</string>
     <string name="coragem_valor">%1$d/10</string>
 
-    <string name="q4_title">4) Qual poder te atrai mais?</string>
+    <!-- Q4: Arma/Poder -->
+    <string name="q4_title">4) Qual arma/poder você escolheria?</string>
+
 
     <!-- Mensagem de resultado -->
     <string name="result_message">%1$s, você é mais parecido com %2$s! (score %3$d)</string>

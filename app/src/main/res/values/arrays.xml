@@ -1,8 +1,8 @@
 <resources>
     <string-array name="poderes_array">
-        <item>Armadura tecnológica</item>
-        <item>Super força</item>
-        <item>Laço da verdade</item>
-        <item>Sentido aranha</item>
+        <item>Mjölnir (martelo encantado)</item>      <!-- Thor -->
+        <item>Armadura tecnológica</item>             <!-- Homem de Ferro -->
+        <item>Escudo indestrutível</item>             <!-- Capitão América -->
+        <item>Força descomunal</item>                 <!-- Hulk -->
     </string-array>
 </resources>

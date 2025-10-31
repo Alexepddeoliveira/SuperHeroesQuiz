@@ -21,6 +21,7 @@ class ResultActivity : AppCompatActivity() {
         val imgHero = findViewById<ImageView>(R.id.imgHero)
         val btnCompartilhar = findViewById<Button>(R.id.btnCompartilhar)
         val btnAbrirWiki = findViewById<Button>(R.id.btnAbrirWiki)
+        val btnRefazer = findViewById<Button>(R.id.btnRefazer) // <-- novo
 
         val nome = intent.getStringExtra("NOME_USUARIO") ?: getString(R.string.app_name)
         val heroi = intent.getStringExtra("HEROI") ?: "Herói Misterioso"
@@ -30,14 +31,16 @@ class ResultActivity : AppCompatActivity() {
         tvResultado.text = getString(R.string.result_message, nome, heroi, pontuacao)
 
         val heroImageRes = when (heroi) {
-            "Homem de Ferro" -> R.mipmap.ic_launcher
-            "Hulk" -> R.mipmap.ic_launcher
-            "Mulher-Maravilha" -> R.mipmap.ic_launcher
-            "Homem-Aranha" -> R.mipmap.ic_launcher
-            else -> R.mipmap.ic_launcher
+            "Thor"             -> R.drawable.hero_thor
+            "Homem de Ferro"   -> R.drawable.hero_ironman
+            "Capitão América"  -> R.drawable.hero_capitao
+            "Hulk"             -> R.drawable.hero_hulk
+            else               -> R.drawable.app_logo
         }
+
         imgHero.setImageResource(heroImageRes)
 
+        // Compartilhar
         btnCompartilhar.setOnClickListener {
             val shareText = getString(R.string.share_text, getString(R.string.app_name), heroi)
             val shareIntent = Intent(Intent.ACTION_SEND).apply {
@@ -47,20 +50,32 @@ class ResultActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(shareIntent, getString(R.string.share_chooser_title)))
         }
 
+        // Abrir Wikipedia
         btnAbrirWiki.setOnClickListener {
             val url = when (heroi) {
-                "Homem de Ferro" -> "https://pt.wikipedia.org/wiki/Homem_de_Ferro"
-                "Hulk" -> "https://pt.wikipedia.org/wiki/Hulk"
-                "Mulher-Maravilha" -> "https://pt.wikipedia.org/wiki/Mulher-Maravilha"
-                "Homem-Aranha" -> "https://pt.wikipedia.org/wiki/Homem-Aranha"
-                else -> "https://pt.wikipedia.org/wiki/Super-her%C3%B3i"
+                "Thor"            -> "https://pt.wikipedia.org/wiki/Thor_(Marvel_Comics)"
+                "Homem de Ferro"  -> "https://pt.wikipedia.org/wiki/Homem_de_Ferro"
+                "Capitão América" -> "https://pt.wikipedia.org/wiki/Capit%C3%A3o_Am%C3%A9rica"
+                "Hulk"            -> "https://pt.wikipedia.org/wiki/Hulk"
+                else              -> "https://pt.wikipedia.org/wiki/Vingadores"
             }
+
             val browserIntent = Intent(Intent.ACTION_VIEW, url.toUri())
             if (browserIntent.resolveActivity(packageManager) != null) {
                 startActivity(browserIntent)
             } else {
                 Toast.makeText(this, getString(R.string.toast_no_app), Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // Refazer quiz (volta para o QuizActivity e mantém o nome)
+        btnRefazer?.setOnClickListener {
+            val restart = Intent(this, QuizActivity::class.java).apply {
+                putExtra("NOME_USUARIO", nome)
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            }
+            startActivity(restart)
+            finish() // fecha a ResultActivity atual
         }
     }
 }
